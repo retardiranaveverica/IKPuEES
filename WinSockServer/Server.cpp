@@ -12,7 +12,7 @@
 #define DEFAULT_PORT "27016"
 #define SERVER_SLEEP_TIME 500
 
-
+//
 bool InitializeWindowsSockets();
 void Provera(SOCKET acceptedSocket);
 int Receive(SOCKET acceptedSocket, char* recvbuf, int size);
