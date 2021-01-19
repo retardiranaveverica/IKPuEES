@@ -1,6 +1,12 @@
+
+
 #include <ws2tcpip.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "../Common/Queue.h"
+#include "../Common/List.h"
+#include "../Common/Message.h"
+#include "../Common/HashMap.h"
 
 #define DEFAULT_BUFLEN 512
 #define DEFAULT_PORT "27016"
@@ -9,6 +15,8 @@
 bool InitializeWindowsSockets();
 void Provera(SOCKET acceptedSocket);
 int Receive(SOCKET acceptedSocket, char* recvbuf, int size);
+
+CRITICAL_SECTION cs;
 
 int  main(void) 
 {
