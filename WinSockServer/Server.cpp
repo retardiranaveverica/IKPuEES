@@ -1,4 +1,4 @@
-
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
 
 #include <ws2tcpip.h>
 #include <stdlib.h>
@@ -12,11 +12,13 @@
 #define DEFAULT_PORT "27016"
 #define SERVER_SLEEP_TIME 500
 
+
 bool InitializeWindowsSockets();
 void Provera(SOCKET acceptedSocket);
 int Receive(SOCKET acceptedSocket, char* recvbuf, int size);
 
 CRITICAL_SECTION cs;
+
 
 int  main(void) 
 {
@@ -232,4 +234,8 @@ int Receive(SOCKET acceptedSocket, char* recvbuf, int size)
 	}
 	return brojac;
 }
+
+#if (_MSC_VER >= 1915)
+#pragma warning(disable:4845)   // __declspec(no_init_all) used but d1initall not set
+#endif
 

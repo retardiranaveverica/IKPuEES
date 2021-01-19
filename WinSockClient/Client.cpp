@@ -1,6 +1,6 @@
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
 
-
-#include <windows.h>
+#include <ws2tcpip.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <conio.h>
@@ -16,13 +16,11 @@
 
 #define SERVER_IP_ADDERESS "127.0.0.1"
 
-// Initializes WinSock2 library
-// Returns true if succeeded, false otherwise.
 bool InitializeWindowsSockets();
 int Send(SOCKET connectSocket, char* messageToSend, int len);
 void Provera(SOCKET acceptedSocket);
 
-int main(void) 
+int __cdecl main(int argc, char **argv) 
 {
     // socket used to communicate with server
     SOCKET connectSocket = INVALID_SOCKET;
@@ -171,3 +169,7 @@ bool InitializeWindowsSockets()
     }
 	return true;
 }
+
+#if (_MSC_VER >= 1915)
+#pragma warning(disable:4845)   // __declspec(no_init_all) used but d1initall not set
+#endif
